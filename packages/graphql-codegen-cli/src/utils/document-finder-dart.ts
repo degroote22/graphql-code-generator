@@ -14,9 +14,10 @@ export const extractDocumentStringFromDartCodeFile = (fileContent: string): stri
     const result = (matches || [])
       .map(item =>
         item
-          .replace(/\$\{.*?\}/g, '')
+          //   .replace(/\$\{.*?\}/g, '')
           .replace(/(gql\(""")/g, '')
           .replace(/"""/g, '')
+          .replace(/\\\$/g, '$')
       )
       .join();
     if (!result || result === '') {

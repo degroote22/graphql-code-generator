@@ -29,6 +29,12 @@ describe('extractDocumentStringFromDartCodeFile', () => {
     expect(doc).toEqual(dart);
   });
 
+  it('args escaping', () => {
+    const doc = extract('dart2.ts');
+    const dart = extractDart('dart2.dart');
+    expect(doc).toEqual(dart);
+  });
+
   //   it('file with gql and string and function use', () => {
   //     const doc = extract('2.ts');
   //     const graphql = extract('8.ts');

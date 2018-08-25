@@ -1,5 +1,5 @@
 {
-  "name": "graphql-code-generator",
+  "name": "graphql-code-generator-private",
   "private": true,
   "repository": "git@github.com:dotansimha/graphql-code-generator.git",
   "author": "dotansimha <dotansimha@gmail.com>",
