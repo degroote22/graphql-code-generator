@@ -3,6 +3,7 @@ import { DocumentNode, Source, parse, concatAST, logger } from 'graphql-codegen-
 import * as fs from 'fs';
 import * as path from 'path';
 import { extractDocumentStringFromCodeFile } from '../../utils/document-finder';
+import { extractDocumentStringFromDartCodeFile } from '../../utils/document-finder-dart';
 
 export const loadFileContent = (filePath: string): DocumentNode | null => {
   if (fs.existsSync(filePath)) {
@@ -13,7 +14,13 @@ export const loadFileContent = (filePath: string): DocumentNode | null => {
       return parse(new Source(fileContent, filePath));
     }
 
-    const foundDoc = extractDocumentStringFromCodeFile(fileContent);
+    let foundDoc;
+
+    if (fileExt === '.dart') {
+      foundDoc = extractDocumentStringFromDartCodeFile(fileContent);
+    } else {
+      foundDoc = extractDocumentStringFromCodeFile(fileContent);
+    }
 
     if (foundDoc) {
       return parse(new Source(foundDoc, filePath));
